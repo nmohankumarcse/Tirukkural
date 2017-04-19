@@ -17,7 +17,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        self.parseTirukkuralJson()
         return true
+    }
+    
+    func parseTirukkuralJson(){
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        print("url : \(urls[urls.count-1])")
+        if let path = Bundle.main.url(forResource: "tirukkural", withExtension: "json") {
+            
+            do {
+                let jsonData = try Data(contentsOf: path, options: .mappedIfSafe)
+                do {
+                    if let jsonResult = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary {
+                        let sections : NSArray = jsonResult.object(forKey: "sections") as! NSArray
+//                        let chapters : NSArray = jsonResult.object(forKey: "chapters") as! NSArray
+                        let kurals : NSArray = jsonResult.object(forKey: "kurals") as! NSArray
+                        for section in sections {
+                            print("section : \(section)")
+                            CoreDataHelper().insertSection(sectionName: section as! String)
+                        }
+                        
+                        for kural in kurals {
+                            print("section : \(kural)")
+                            CoreDataHelper().insertKural(kural: kural as! NSDictionary)
+                        }
+                        
+                        print("parsedJson : \(jsonResult)")
+                    }
+                } catch let error as NSError {
+                    print("Error: \(error)")
+                }
+            } catch let error as NSError {
+                print("Error: \(error)")
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

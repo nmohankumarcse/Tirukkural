@@ -15,6 +15,21 @@
 		0007C2AD1E9D047D00E9D3BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0007C2AB1E9D047D00E9D3BA /* LaunchScreen.storyboard */; };
 		0007C2B81E9D047E00E9D3BA /* TirukkralTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0007C2B71E9D047E00E9D3BA /* TirukkralTests.swift */; };
 		0007C2C31E9D047E00E9D3BA /* TirukkralUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0007C2C21E9D047E00E9D3BA /* TirukkralUITests.swift */; };
+		0007C2D11E9D04B600E9D3BA /* tirukkural.json in Resources */ = {isa = PBXBuildFile; fileRef = 0007C2D01E9D04B600E9D3BA /* tirukkural.json */; };
+		007323411EA4D8460011370E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007323401EA4D8460011370E /* CoreDataManager.swift */; };
+		0075CF551EA619C30035C1E4 /* ChaptersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF541EA619C30035C1E4 /* ChaptersTableViewController.swift */; };
+		0075CF571EA61FFA0035C1E4 /* KuralsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF561EA61FFA0035C1E4 /* KuralsTableViewController.swift */; };
+		0075CF591EA6233A0035C1E4 /* KuralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */; };
+		0075CF5B1EA62C680035C1E4 /* KuralDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF5A1EA62C680035C1E4 /* KuralDetailViewController.swift */; };
+		0075CF5D1EA635320035C1E4 /* KuralDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF5C1EA635320035C1E4 /* KuralDetailTableViewController.swift */; };
+		0075CF5F1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF5E1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift */; };
+		00860E4D1EA4C3240078C063 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E471EA4C3240078C063 /* Section.swift */; };
+		00860E4E1EA4C3240078C063 /* Section+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E481EA4C3240078C063 /* Section+CoreDataProperties.swift */; };
+		00860E4F1EA4C3240078C063 /* Kural.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E491EA4C3240078C063 /* Kural.swift */; };
+		00860E501EA4C3240078C063 /* Kural+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E4A1EA4C3240078C063 /* Kural+CoreDataProperties.swift */; };
+		00860E511EA4C3240078C063 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E4B1EA4C3240078C063 /* Chapter.swift */; };
+		00860E521EA4C3240078C063 /* Chapter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E4C1EA4C3240078C063 /* Chapter+CoreDataProperties.swift */; };
+		00860E551EA4C9690078C063 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E541EA4C9690078C063 /* CoreDataHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +64,21 @@
 		0007C2BE1E9D047E00E9D3BA /* TirukkralUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TirukkralUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0007C2C21E9D047E00E9D3BA /* TirukkralUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TirukkralUITests.swift; sourceTree = "<group>"; };
 		0007C2C41E9D047E00E9D3BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0007C2D01E9D04B600E9D3BA /* tirukkural.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tirukkural.json; sourceTree = "<group>"; };
+		007323401EA4D8460011370E /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Tirukkral/CoreData/CoreDataManager.swift; sourceTree = "<group>"; };
+		0075CF541EA619C30035C1E4 /* ChaptersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaptersTableViewController.swift; sourceTree = "<group>"; };
+		0075CF561EA61FFA0035C1E4 /* KuralsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralsTableViewController.swift; sourceTree = "<group>"; };
+		0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralTableViewCell.swift; sourceTree = "<group>"; };
+		0075CF5A1EA62C680035C1E4 /* KuralDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralDetailViewController.swift; sourceTree = "<group>"; };
+		0075CF5C1EA635320035C1E4 /* KuralDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralDetailTableViewController.swift; sourceTree = "<group>"; };
+		0075CF5E1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		00860E471EA4C3240078C063 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Section.swift; path = Tirukkral/CoreData/Section.swift; sourceTree = "<group>"; };
+		00860E481EA4C3240078C063 /* Section+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Section+CoreDataProperties.swift"; path = "Tirukkral/CoreData/Section+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		00860E491EA4C3240078C063 /* Kural.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Kural.swift; path = Tirukkral/CoreData/Kural.swift; sourceTree = "<group>"; };
+		00860E4A1EA4C3240078C063 /* Kural+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Kural+CoreDataProperties.swift"; path = "Tirukkral/CoreData/Kural+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		00860E4B1EA4C3240078C063 /* Chapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Chapter.swift; path = Tirukkral/CoreData/Chapter.swift; sourceTree = "<group>"; };
+		00860E4C1EA4C3240078C063 /* Chapter+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Chapter+CoreDataProperties.swift"; path = "Tirukkral/CoreData/Chapter+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		00860E541EA4C9690078C063 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Tirukkral/CoreData/CoreDataHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +129,17 @@
 		0007C29E1E9D047D00E9D3BA /* Tirukkral */ = {
 			isa = PBXGroup;
 			children = (
+				00860E531EA4C5C00078C063 /* CoreData */,
+				0007C2D01E9D04B600E9D3BA /* tirukkural.json */,
 				0007C29F1E9D047D00E9D3BA /* AppDelegate.swift */,
 				0007C2A11E9D047D00E9D3BA /* ViewController.swift */,
+				0075CF541EA619C30035C1E4 /* ChaptersTableViewController.swift */,
+				0075CF561EA61FFA0035C1E4 /* KuralsTableViewController.swift */,
+				0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */,
+				0075CF5C1EA635320035C1E4 /* KuralDetailTableViewController.swift */,
+				0075CF5A1EA62C680035C1E4 /* KuralDetailViewController.swift */,
 				0007C2A31E9D047D00E9D3BA /* Main.storyboard */,
+				0075CF5E1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift */,
 				0007C2A91E9D047D00E9D3BA /* Assets.xcassets */,
 				0007C2AB1E9D047D00E9D3BA /* LaunchScreen.storyboard */,
 				0007C2AE1E9D047D00E9D3BA /* Info.plist */,
@@ -126,6 +164,22 @@
 				0007C2C41E9D047E00E9D3BA /* Info.plist */,
 			);
 			path = TirukkralUITests;
+			sourceTree = "<group>";
+		};
+		00860E531EA4C5C00078C063 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				00860E471EA4C3240078C063 /* Section.swift */,
+				00860E481EA4C3240078C063 /* Section+CoreDataProperties.swift */,
+				00860E491EA4C3240078C063 /* Kural.swift */,
+				00860E4A1EA4C3240078C063 /* Kural+CoreDataProperties.swift */,
+				00860E4B1EA4C3240078C063 /* Chapter.swift */,
+				00860E4C1EA4C3240078C063 /* Chapter+CoreDataProperties.swift */,
+				00860E541EA4C9690078C063 /* CoreDataHelper.swift */,
+				007323401EA4D8460011370E /* CoreDataManager.swift */,
+			);
+			name = CoreData;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0007C2AD1E9D047D00E9D3BA /* LaunchScreen.storyboard in Resources */,
+				0007C2D11E9D04B600E9D3BA /* tirukkural.json in Resources */,
 				0007C2AA1E9D047D00E9D3BA /* Assets.xcassets in Resources */,
 				0007C2A51E9D047D00E9D3BA /* Main.storyboard in Resources */,
 			);
@@ -262,9 +317,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00860E551EA4C9690078C063 /* CoreDataHelper.swift in Sources */,
 				0007C2A81E9D047D00E9D3BA /* Tirukkral.xcdatamodeld in Sources */,
+				00860E511EA4C3240078C063 /* Chapter.swift in Sources */,
+				00860E4E1EA4C3240078C063 /* Section+CoreDataProperties.swift in Sources */,
 				0007C2A21E9D047D00E9D3BA /* ViewController.swift in Sources */,
+				0075CF591EA6233A0035C1E4 /* KuralTableViewCell.swift in Sources */,
+				00860E501EA4C3240078C063 /* Kural+CoreDataProperties.swift in Sources */,
+				0075CF571EA61FFA0035C1E4 /* KuralsTableViewController.swift in Sources */,
+				0075CF5D1EA635320035C1E4 /* KuralDetailTableViewController.swift in Sources */,
+				00860E4F1EA4C3240078C063 /* Kural.swift in Sources */,
+				0075CF5B1EA62C680035C1E4 /* KuralDetailViewController.swift in Sources */,
 				0007C2A01E9D047D00E9D3BA /* AppDelegate.swift in Sources */,
+				0075CF5F1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift in Sources */,
+				00860E521EA4C3240078C063 /* Chapter+CoreDataProperties.swift in Sources */,
+				00860E4D1EA4C3240078C063 /* Section.swift in Sources */,
+				007323411EA4D8460011370E /* CoreDataManager.swift in Sources */,
+				0075CF551EA619C30035C1E4 /* ChaptersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +578,7 @@
 				0007C2C91E9D047E00E9D3BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0007C2CA1E9D047E00E9D3BA /* Build configuration list for PBXNativeTarget "TirukkralTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +587,7 @@
 				0007C2CC1E9D047E00E9D3BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0007C2CD1E9D047E00E9D3BA /* Build configuration list for PBXNativeTarget "TirukkralUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +596,7 @@
 				0007C2CF1E9D047E00E9D3BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
