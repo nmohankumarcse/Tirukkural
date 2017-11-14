@@ -83,21 +83,40 @@ class CoreDataHelper: NSObject {
         }
     }
     
-    func insertChapter(chapterName : String,sectionName : String) -> Chapter{
+    func updateKural(kural : Kural){
         let context : NSManagedObjectContext =  CoreDataManager.sharedInstance.managedObjectContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Kural")
+        request.predicate = NSPredicate(format: "kuralNo == %d", kural.kuralNo)
+        do {
+            let results : [Kural] = try context.fetch(request) as! [Kural]
+            if results.count != 0 {
+                let kural1 : Kural = results.last!
+                kural1.isFavourite = kural.isFavourite
+                do {
+                    try context.save()
+                } catch let error as NSError {
+                    print("Could not save \(error), \(error.userInfo)")
+                }
+            }
+        } catch let error {
+            print("failed to fetch Kural object: \(error)")
+        }
+    }
+    
+    func insertChapter(chapterName : String,sectionName : String) -> Chapter{
         var chapter : Chapter
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chapter")
         request.predicate = NSPredicate(format: "chapterName == %@", chapterName)
         do {
-            let results : [Chapter] = try context.fetch(request) as! [Chapter]
+            let results : [Chapter] = try CoreDataManager.sharedInstance.managedObjectContext.fetch(request) as! [Chapter]
             if results.count == 0 {
-                let entity =  NSEntityDescription.entity(forEntityName: "Chapter", in:context)
-                chapter =  NSManagedObject(entity: entity!,insertInto: context) as! Chapter
+                let entity =  NSEntityDescription.entity(forEntityName: "Chapter", in:CoreDataManager.sharedInstance.managedObjectContext)
+                chapter =  NSManagedObject(entity: entity!,insertInto: CoreDataManager.sharedInstance.managedObjectContext) as! Chapter
                 chapter.chapterName = chapterName
                 let section:Section = fetchSectionWithName(sectionName: sectionName);
                 chapter.hasSection = section
                 do {
-                    try context.save()
+                    try CoreDataManager.sharedInstance.managedObjectContext.save()
                 } catch let error as NSError {
                     print("Could not save \(error), \(error.userInfo)")
                 }
@@ -116,10 +135,9 @@ class CoreDataHelper: NSObject {
     
     func getAllSections() -> [Section]{
         var results : [Section]?
-        let context : NSManagedObjectContext =  CoreDataManager.sharedInstance.managedObjectContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Section")
         do {
-            results = try context.fetch(request) as? [Section]
+            results = try CoreDataManager.sharedInstance.managedObjectContext.fetch(request) as? [Section]
         }
         catch let error {
             print("failed to fetch Section object: \(error)")
@@ -129,11 +147,10 @@ class CoreDataHelper: NSObject {
     
     func getAllChaptersForSection(section : Section) -> [Chapter]{
         var results : [Chapter] = []
-        let context : NSManagedObjectContext =  CoreDataManager.sharedInstance.managedObjectContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chapter")
         request.predicate = NSPredicate(format: "hasSection == %@", section)
         do {
-            results = try context.fetch(request) as! [Chapter]
+            results = try CoreDataManager.sharedInstance.managedObjectContext.fetch(request) as! [Chapter]
         }
         catch let error {
             print("failed to fetch Section object: \(error)")
@@ -143,16 +160,61 @@ class CoreDataHelper: NSObject {
     
     func getAllKuralsForChapter(chapter : Chapter) -> [Kural]{
         var results : [Kural] = []
-        let context : NSManagedObjectContext =  CoreDataManager.sharedInstance.managedObjectContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Kural")
+        let sort : NSSortDescriptor = NSSortDescriptor.init(key: "kuralNo", ascending: true)
+        request.sortDescriptors = [sort]
         request.predicate = NSPredicate(format: "hasChapter == %@", chapter)
         do {
-            results = try context.fetch(request) as! [Kural]
+            results = try CoreDataManager.sharedInstance.managedObjectContext.fetch(request) as! [Kural]
         }
         catch let error {
             print("failed to fetch Section object: \(error)")
         }
         return results
+    }
+    
+    
+    func getAllFavouriteKurals() -> [Kural]{
+        var results : [Kural] = []
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Kural")
+        let sort : NSSortDescriptor = NSSortDescriptor.init(key: "kuralNo", ascending: true)
+        request.sortDescriptors = [sort]
+        request.predicate = NSPredicate(format: "isFavourite == %@", NSNumber.init(value: true))
+        do {
+            results = try CoreDataManager.sharedInstance.managedObjectContext.fetch(request) as! [Kural]
+        }
+        catch let error {
+            print("failed to fetch Section object: \(error)")
+        }
+        return results
+    }
+    
+    func getKuralForKeyword(keyword : String) -> [Kural]{
+        var results : [Kural] = []
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Kural")
+        request.predicate = NSPredicate(format: "kural contains[cd] %@", keyword)
+        do {
+            results = try CoreDataManager.sharedInstance.managedObjectContext.fetch(request) as! [Kural]
+        }
+        catch let error {
+            print("failed to fetch Section object: \(error)")
+        }
+        return results
+    }
+    
+    func getRandomKuralForTheDay()->Kural{
+        
+        var results : [Kural] = []
+        let randomNubmer : UInt32 = arc4random()%1330
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Kural")
+        request.predicate = NSPredicate(format: "kuralNo == %d", randomNubmer)
+        do {
+            results = try CoreDataManager.sharedInstance.managedObjectContext.fetch(request) as! [Kural]
+        }
+        catch let error {
+            print("failed to fetch Section object: \(error)")
+        }
+        return results[0]
     }
     
 }

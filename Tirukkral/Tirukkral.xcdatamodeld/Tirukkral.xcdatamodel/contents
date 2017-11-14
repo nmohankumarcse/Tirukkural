@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="15G31" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Chapter" representedClassName="Chapter" syncable="YES">
         <attribute name="chapterName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hasSection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="chapters" inverseEntity="Section" syncable="YES"/>
         <relationship name="kurals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Kural" inverseName="hasChapter" inverseEntity="Kural" syncable="YES"/>
     </entity>
     <entity name="Kural" representedClassName="Kural" syncable="YES">
+        <attribute name="isFavourite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="kural" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="kuralMeaningEng" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="kuralMeaningMuVa" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,7 +20,7 @@
     </entity>
     <elements>
         <element name="Chapter" positionX="-54" positionY="0" width="128" height="90"/>
+        <element name="Kural" positionX="-54" positionY="18" width="128" height="150"/>
         <element name="Section" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="Kural" positionX="-54" positionY="18" width="128" height="135"/>
     </elements>
 </model>

@@ -20,9 +20,9 @@
 		0075CF551EA619C30035C1E4 /* ChaptersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF541EA619C30035C1E4 /* ChaptersTableViewController.swift */; };
 		0075CF571EA61FFA0035C1E4 /* KuralsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF561EA61FFA0035C1E4 /* KuralsTableViewController.swift */; };
 		0075CF591EA6233A0035C1E4 /* KuralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */; };
-		0075CF5B1EA62C680035C1E4 /* KuralDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF5A1EA62C680035C1E4 /* KuralDetailViewController.swift */; };
 		0075CF5D1EA635320035C1E4 /* KuralDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF5C1EA635320035C1E4 /* KuralDetailTableViewController.swift */; };
 		0075CF5F1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075CF5E1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift */; };
+		007D22271EA74158003F78C1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007D22261EA74158003F78C1 /* SearchViewController.swift */; };
 		00860E4D1EA4C3240078C063 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E471EA4C3240078C063 /* Section.swift */; };
 		00860E4E1EA4C3240078C063 /* Section+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E481EA4C3240078C063 /* Section+CoreDataProperties.swift */; };
 		00860E4F1EA4C3240078C063 /* Kural.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E491EA4C3240078C063 /* Kural.swift */; };
@@ -30,6 +30,10 @@
 		00860E511EA4C3240078C063 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E4B1EA4C3240078C063 /* Chapter.swift */; };
 		00860E521EA4C3240078C063 /* Chapter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E4C1EA4C3240078C063 /* Chapter+CoreDataProperties.swift */; };
 		00860E551EA4C9690078C063 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00860E541EA4C9690078C063 /* CoreDataHelper.swift */; };
+		5230837C1FBB2A11009AFC8C /* FavourtiesKuralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5230837B1FBB2A11009AFC8C /* FavourtiesKuralViewController.swift */; };
+		938EC692B9ECE1FD453D5025 /* Pods_TirukkralTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29225347C87CE1DDDAEBF965 /* Pods_TirukkralTests.framework */; };
+		BBB9C80F29795C589930C248 /* Pods_Tirukkral.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E6745AE70A4E0091908CC7 /* Pods_Tirukkral.framework */; };
+		F543CF4EE9C23BA7ADADB41B /* Pods_TirukkralUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A6230ABF39933B34A13B6 /* Pods_TirukkralUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,9 +73,9 @@
 		0075CF541EA619C30035C1E4 /* ChaptersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaptersTableViewController.swift; sourceTree = "<group>"; };
 		0075CF561EA61FFA0035C1E4 /* KuralsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralsTableViewController.swift; sourceTree = "<group>"; };
 		0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralTableViewCell.swift; sourceTree = "<group>"; };
-		0075CF5A1EA62C680035C1E4 /* KuralDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralDetailViewController.swift; sourceTree = "<group>"; };
 		0075CF5C1EA635320035C1E4 /* KuralDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralDetailTableViewController.swift; sourceTree = "<group>"; };
 		0075CF5E1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		007D22261EA74158003F78C1 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		00860E471EA4C3240078C063 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Section.swift; path = Tirukkral/CoreData/Section.swift; sourceTree = "<group>"; };
 		00860E481EA4C3240078C063 /* Section+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Section+CoreDataProperties.swift"; path = "Tirukkral/CoreData/Section+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		00860E491EA4C3240078C063 /* Kural.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Kural.swift; path = Tirukkral/CoreData/Kural.swift; sourceTree = "<group>"; };
@@ -79,6 +83,16 @@
 		00860E4B1EA4C3240078C063 /* Chapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Chapter.swift; path = Tirukkral/CoreData/Chapter.swift; sourceTree = "<group>"; };
 		00860E4C1EA4C3240078C063 /* Chapter+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Chapter+CoreDataProperties.swift"; path = "Tirukkral/CoreData/Chapter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		00860E541EA4C9690078C063 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Tirukkral/CoreData/CoreDataHelper.swift; sourceTree = "<group>"; };
+		166A6230ABF39933B34A13B6 /* Pods_TirukkralUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TirukkralUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29225347C87CE1DDDAEBF965 /* Pods_TirukkralTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TirukkralTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		438F2642C9228550BDA3A636 /* Pods-TirukkralTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TirukkralTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TirukkralTests/Pods-TirukkralTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5230837B1FBB2A11009AFC8C /* FavourtiesKuralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavourtiesKuralViewController.swift; sourceTree = "<group>"; };
+		5B8FC974996CF0546E0DBCB1 /* Pods-TirukkralUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TirukkralUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TirukkralUITests/Pods-TirukkralUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5D8E8D1C0C7577EBCF5B92E6 /* Pods-Tirukkral.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tirukkral.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tirukkral/Pods-Tirukkral.debug.xcconfig"; sourceTree = "<group>"; };
+		BE0CB26DCBE66C8A01B96EA6 /* Pods-TirukkralTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TirukkralTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TirukkralTests/Pods-TirukkralTests.release.xcconfig"; sourceTree = "<group>"; };
+		C26AEC77E8947D844D7E946C /* Pods-TirukkralUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TirukkralUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TirukkralUITests/Pods-TirukkralUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D7E6745AE70A4E0091908CC7 /* Pods_Tirukkral.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tirukkral.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC52E2CC662A782F202AFA30 /* Pods-Tirukkral.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tirukkral.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tirukkral/Pods-Tirukkral.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB9C80F29795C589930C248 /* Pods_Tirukkral.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				938EC692B9ECE1FD453D5025 /* Pods_TirukkralTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F543CF4EE9C23BA7ADADB41B /* Pods_TirukkralUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +130,8 @@
 				0007C2B61E9D047E00E9D3BA /* TirukkralTests */,
 				0007C2C11E9D047E00E9D3BA /* TirukkralUITests */,
 				0007C29D1E9D047D00E9D3BA /* Products */,
+				037B575124D132804E97C0D5 /* Pods */,
+				ED1CC663829BD7A93B2AE396 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,8 +156,9 @@
 				0075CF561EA61FFA0035C1E4 /* KuralsTableViewController.swift */,
 				0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */,
 				0075CF5C1EA635320035C1E4 /* KuralDetailTableViewController.swift */,
-				0075CF5A1EA62C680035C1E4 /* KuralDetailViewController.swift */,
+				007D22261EA74158003F78C1 /* SearchViewController.swift */,
 				0007C2A31E9D047D00E9D3BA /* Main.storyboard */,
+				5230837B1FBB2A11009AFC8C /* FavourtiesKuralViewController.swift */,
 				0075CF5E1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift */,
 				0007C2A91E9D047D00E9D3BA /* Assets.xcassets */,
 				0007C2AB1E9D047D00E9D3BA /* LaunchScreen.storyboard */,
@@ -182,6 +202,29 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		037B575124D132804E97C0D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D8E8D1C0C7577EBCF5B92E6 /* Pods-Tirukkral.debug.xcconfig */,
+				FC52E2CC662A782F202AFA30 /* Pods-Tirukkral.release.xcconfig */,
+				438F2642C9228550BDA3A636 /* Pods-TirukkralTests.debug.xcconfig */,
+				BE0CB26DCBE66C8A01B96EA6 /* Pods-TirukkralTests.release.xcconfig */,
+				C26AEC77E8947D844D7E946C /* Pods-TirukkralUITests.debug.xcconfig */,
+				5B8FC974996CF0546E0DBCB1 /* Pods-TirukkralUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		ED1CC663829BD7A93B2AE396 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D7E6745AE70A4E0091908CC7 /* Pods_Tirukkral.framework */,
+				29225347C87CE1DDDAEBF965 /* Pods_TirukkralTests.framework */,
+				166A6230ABF39933B34A13B6 /* Pods_TirukkralUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,9 +232,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0007C2C71E9D047E00E9D3BA /* Build configuration list for PBXNativeTarget "Tirukkral" */;
 			buildPhases = (
+				C97DF4864108538115B2B62D /* [CP] Check Pods Manifest.lock */,
 				0007C2981E9D047D00E9D3BA /* Sources */,
 				0007C2991E9D047D00E9D3BA /* Frameworks */,
 				0007C29A1E9D047D00E9D3BA /* Resources */,
+				7274F91F515CAC54A51C18E6 /* [CP] Embed Pods Frameworks */,
+				55CCC7F2CE7AA6A86BFE17B3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,9 +252,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0007C2CA1E9D047E00E9D3BA /* Build configuration list for PBXNativeTarget "TirukkralTests" */;
 			buildPhases = (
+				CC2A66CBB571FC18B03B83CF /* [CP] Check Pods Manifest.lock */,
 				0007C2AF1E9D047E00E9D3BA /* Sources */,
 				0007C2B01E9D047E00E9D3BA /* Frameworks */,
 				0007C2B11E9D047E00E9D3BA /* Resources */,
+				EFC48B0135675F270AF20756 /* [CP] Embed Pods Frameworks */,
+				354538D42D2C64DCC502891D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -224,9 +273,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0007C2CD1E9D047E00E9D3BA /* Build configuration list for PBXNativeTarget "TirukkralUITests" */;
 			buildPhases = (
+				CE342727FB6CEE423B11E440 /* [CP] Check Pods Manifest.lock */,
 				0007C2BA1E9D047E00E9D3BA /* Sources */,
 				0007C2BB1E9D047E00E9D3BA /* Frameworks */,
 				0007C2BC1E9D047E00E9D3BA /* Resources */,
+				5DFEF3E2AB8BC19AB49F17E8 /* [CP] Embed Pods Frameworks */,
+				C2EF7B9FD0FDAD2537BEE3A1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -312,6 +364,156 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		354538D42D2C64DCC502891D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TirukkralTests/Pods-TirukkralTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55CCC7F2CE7AA6A86BFE17B3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tirukkral/Pods-Tirukkral-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DFEF3E2AB8BC19AB49F17E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TirukkralUITests/Pods-TirukkralUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7274F91F515CAC54A51C18E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tirukkral/Pods-Tirukkral-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tirukkral/Pods-Tirukkral-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2EF7B9FD0FDAD2537BEE3A1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TirukkralUITests/Pods-TirukkralUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C97DF4864108538115B2B62D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tirukkral-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC2A66CBB571FC18B03B83CF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TirukkralTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE342727FB6CEE423B11E440 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TirukkralUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFC48B0135675F270AF20756 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TirukkralTests/Pods-TirukkralTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0007C2981E9D047D00E9D3BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -320,6 +522,8 @@
 				00860E551EA4C9690078C063 /* CoreDataHelper.swift in Sources */,
 				0007C2A81E9D047D00E9D3BA /* Tirukkral.xcdatamodeld in Sources */,
 				00860E511EA4C3240078C063 /* Chapter.swift in Sources */,
+				007D22271EA74158003F78C1 /* SearchViewController.swift in Sources */,
+				5230837C1FBB2A11009AFC8C /* FavourtiesKuralViewController.swift in Sources */,
 				00860E4E1EA4C3240078C063 /* Section+CoreDataProperties.swift in Sources */,
 				0007C2A21E9D047D00E9D3BA /* ViewController.swift in Sources */,
 				0075CF591EA6233A0035C1E4 /* KuralTableViewCell.swift in Sources */,
@@ -327,7 +531,6 @@
 				0075CF571EA61FFA0035C1E4 /* KuralsTableViewController.swift in Sources */,
 				0075CF5D1EA635320035C1E4 /* KuralDetailTableViewController.swift in Sources */,
 				00860E4F1EA4C3240078C063 /* Kural.swift in Sources */,
-				0075CF5B1EA62C680035C1E4 /* KuralDetailViewController.swift in Sources */,
 				0007C2A01E9D047D00E9D3BA /* AppDelegate.swift in Sources */,
 				0075CF5F1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift in Sources */,
 				00860E521EA4C3240078C063 /* Chapter+CoreDataProperties.swift in Sources */,
@@ -483,6 +686,7 @@
 		};
 		0007C2C81E9D047E00E9D3BA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D8E8D1C0C7577EBCF5B92E6 /* Pods-Tirukkral.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tirukkral/Info.plist;
@@ -495,6 +699,7 @@
 		};
 		0007C2C91E9D047E00E9D3BA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC52E2CC662A782F202AFA30 /* Pods-Tirukkral.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tirukkral/Info.plist;
@@ -507,6 +712,7 @@
 		};
 		0007C2CB1E9D047E00E9D3BA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 438F2642C9228550BDA3A636 /* Pods-TirukkralTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -521,6 +727,7 @@
 		};
 		0007C2CC1E9D047E00E9D3BA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE0CB26DCBE66C8A01B96EA6 /* Pods-TirukkralTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -535,6 +742,7 @@
 		};
 		0007C2CE1E9D047E00E9D3BA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C26AEC77E8947D844D7E946C /* Pods-TirukkralUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = TirukkralUITests/Info.plist;
@@ -548,6 +756,7 @@
 		};
 		0007C2CF1E9D047E00E9D3BA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B8FC974996CF0546E0DBCB1 /* Pods-TirukkralUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = TirukkralUITests/Info.plist;

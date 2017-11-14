@@ -44,6 +44,7 @@ class ChaptersTableViewController: UITableViewController {
         let chapter : Chapter = chapters[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "chapterCell", for: indexPath)
         cell.textLabel?.text = chapter.chapterName
+        cell.selectionStyle = .none
         return cell
     }
     

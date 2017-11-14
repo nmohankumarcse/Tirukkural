@@ -41,10 +41,8 @@ class KuralsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let kural : Kural = kurals[indexPath.row]
         let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "kuralCell", for: indexPath) as! KuralTableViewCell
-        let kuralDescription : [String] = (kural.kural?.components(separatedBy: ","))!
-        cell.kuralNo.text = "\(kural.kuralNo)"
-        cell.line1.text = kuralDescription[0]
-        cell.line2.text = kuralDescription[1]
+        cell.kural = kural
+        cell.loadData()
         return cell
     }
     
