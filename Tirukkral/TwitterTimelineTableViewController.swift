@@ -1,25 +1,46 @@
 //
-//  KuralsTableViewController.swift
+//  TwitterTimelineTableViewController.swift
 //  Tirukkral
 //
-//  Created by Muthu on 18/04/17.
+//  Created by Mohankumar on 16/11/17.
 //  Copyright © 2017 Mohan. All rights reserved.
 //
 
 import UIKit
+import TwitterKit
 
-class KuralsTableViewController: UITableViewController {
-    var chapter : Chapter?
-    var kurals : [Kural] = []
+class TwitterTimelineTableViewController: TWTRTimelineViewController,UITextFieldDelegate {
+    @IBOutlet weak var seachText: UITextField!
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == "\n" {
+            searchTwitter(tag: self.seachText.text!)
+            textField.resignFirstResponder()
+            return false
+        }
+        return true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = chapter?.chapterName
-        kurals = CoreDataHelper.shared().getAllKuralsForChapter(chapter: chapter!)
+        self.seachText.text = "#tirukkural"
+        searchTwitter(tag :"#tirukkural")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+
+    func searchTwitter(tag : String){
+        Twitter.sharedInstance().sessionStore.fetchGuestSession { (guestSession, error) in
+            if (guestSession != nil) {
+                // make API calls that do not require user auth
+                let client = TWTRAPIClient()
+                self.dataSource = TWTRSearchTimelineDataSource(searchQuery: tag, apiClient: client)
+            } else {
+                print("error: \(String(describing: error))");
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,34 +50,26 @@ class KuralsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return kurals.count
-    }
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let kural : Kural = kurals[indexPath.row]
-        let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "kuralCell", for: indexPath) as! KuralTableViewCell
-        cell.kural = kural
-        cell.loadData()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let kuralsDVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "kuralDetailTable") as! KuralDetailTableViewController
-        let kural : Kural = kurals[indexPath.row]
-        kuralsDVC.kural = kural
-        self.navigationController?.pushViewController(kuralsDVC, animated: true)
-    }
- 
+    */
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

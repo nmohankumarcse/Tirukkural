@@ -27,16 +27,20 @@ class KuralTableViewCell: UITableViewCell {
     
     
     func loadData(){
-        let kuralDescription : [String] = (kural!.kural?.components(separatedBy: ","))!
-        self.kuralNo.text = "\(kural!.kuralNo)"
-        self.line1.text = kuralDescription[0]
-        self.line2.text = kuralDescription[1]
-        favouriteBg.image = UIImage.init(named: "Favourites")
-        favouritesButton.isSelected = false
-        if let isFav = self.kural?.isFavourite{
-            if isFav{
-                favouriteBg.image = UIImage.init(named: "Favourites_Selected")
-                favouritesButton.isSelected = true
+        if let kuralD  = self.kural{
+            if let description = kuralD.kural {
+            let kuralDescription : [String] = (description.components(separatedBy: ","))
+            self.kuralNo.text = "\(kural!.kuralNo)"
+            self.line1.text = kuralDescription[0]
+            self.line2.text = kuralDescription[1]
+            favouriteBg.image = UIImage.init(named: "Star")
+            favouritesButton.isSelected = false
+            if let isFav = self.kural?.isFavourite{
+                if isFav{
+                    favouriteBg.image = UIImage.init(named: "Star_Selected")
+                    favouritesButton.isSelected = true
+                }
+            }
             }
         }
         self.selectionStyle = .none
@@ -44,15 +48,15 @@ class KuralTableViewCell: UITableViewCell {
 
     @IBAction func markAsFavourite(_ sender: UIButton) {
         if sender.isSelected{
-            favouriteBg.image = UIImage.init(named: "Favourites")
+            favouriteBg.image = UIImage.init(named: "Star")
             self.kural?.isFavourite = false
         }
         else{
-            favouriteBg.image = UIImage.init(named: "Favourites_Selected")
+            favouriteBg.image = UIImage.init(named: "Star_Selected")
             self.kural?.isFavourite = true
         }
         sender.isSelected = !sender.isSelected
-        let cdm = CoreDataHelper()
+        let cdm = CoreDataHelper.shared()
         cdm.updateKural(kural: kural!)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

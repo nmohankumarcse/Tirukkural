@@ -23,7 +23,7 @@ class FavourtiesKuralViewController: UIViewController,UITableViewDelegate,UITabl
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        kurals = CoreDataHelper().getAllFavouriteKurals()
+        kurals = CoreDataHelper.shared().getAllFavouriteKurals()
         favourtiesTableView.reloadData()
     }
     

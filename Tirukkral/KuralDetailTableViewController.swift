@@ -8,35 +8,21 @@
 
 import UIKit
 import SVProgressHUD
+import TwitterKit
 
-class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,DBInsertion {
     var kural : Kural?
     @IBOutlet weak var tableView: UITableView!
     var isRandom : Bool = false
+    var sectionExpandArray = [true,false,false,false,false,false]
+    var total = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        if kural == nil{
-            isRandom = true
-            let sections = CoreDataHelper().getAllSections()
-            if sections.count < 3{
-                SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
-                SVProgressHUD.showProgress(0, status: "Loading...")
-                self.completeParsing() {isCompleted in
-                    // your completion block code here.
-                    if isCompleted{
-                        SVProgressHUD.dismiss(completion: nil)
-                        self.kural =  CoreDataHelper().getRandomKuralForTheDay()
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-            else{
-                self.kural =  CoreDataHelper().getRandomKuralForTheDay()
-                self.tableView.reloadData()
-            }
-        }
-        else{
+        if !isRandom{
             self.navigationItem.title =  "விளக்கம்"
+        }
+        if kural != nil{
+            animateTableView()
         }
         self.tableView.estimatedRowHeight = 80;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -45,6 +31,45 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    @IBAction func composeTweet(_ sender: Any) {
+        if (Twitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
+            // App must have at least one logged-in user to compose a Tweet
+            self.showTweetCompose()
+        } else {
+            // Log in, and then check again
+            Twitter.sharedInstance().logIn { session, error in
+                if session != nil { // Log in succeeded
+                    self.showTweetCompose()
+                } else {
+                    let alert = UIAlertController(title: "No Twitter Accounts Available", message: "You must log in before presenting a composer.", preferredStyle: .alert)
+                    self.present(alert, animated: false, completion: nil)
+                }
+            }
+        }
+    }
+    
+    func showTweetCompose(){
+        let kuralDescription : [String] = (self.kural!.kural!.components(separatedBy: ","))
+        let chapterName : String = (kural?.hasChapter?.chapterName)!
+        let composer = TWTRComposerViewController(initialText: "\(kuralDescription[0]) \n \(kuralDescription[1]) #\(chapterName) #tirukkural #திருக்குறள்", image: UIImage.init(named: "thiruvalluvar"), videoURL: nil)
+        composer.becomeFirstResponder()
+
+        present(composer, animated: true, completion: nil)
+    }
+    
+    
+    func animateTableView(){
+        self.tableView.reloadData()
+        for (index,_) in self.sectionExpandArray.enumerated(){
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                self.tableView.beginUpdates()
+                self.sectionExpandArray[index] = true
+                self.tableView.reloadSections(IndexSet.init(integer: index), with: .automatic)
+                self.tableView.endUpdates()
+            })
+        }
     }
     
     func completeParsing(completion: @escaping (Bool) -> ()) {
@@ -60,17 +85,15 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
                             let sections : NSArray = jsonResult.object(forKey: "sections") as! NSArray
                             //                        let chapters : NSArray = jsonResult.object(forKey: "chapters") as! NSArray
                             let kurals : NSArray = jsonResult.object(forKey: "kurals") as! NSArray
-                            
+                            self.total = kurals.count
+                            let cdh = CoreDataHelper.shared()
+                            cdh.delegete = self
                             for (_, section) in sections.enumerated() {
-                                CoreDataHelper().insertSection(sectionName: section as! String)
+                                cdh.insertSection(sectionName: section as! String)
                             }
                             
                             for (index, kural) in kurals.enumerated() {
-                                print("index : \(index)")
-                                CoreDataHelper().insertKural(kural: kural as! NSDictionary)
-                                print("progress :\(Float(index)/Float(kurals.count))")
-                                
-                                SVProgressHUD.showProgress(Float(index)/Float(kurals.count), status: "Loading \(index)"+"/"+"\(kurals.count)")
+                                cdh.insertKural(kural: kural as! NSDictionary, index: index)
                                 if index == kurals.count-1{
                                     completion(true)
                                 }
@@ -84,10 +107,22 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
                 }
             }
         })
-
         // Call YOUR completion here...
     }
 
+    func kuralInserted(index: Int) {
+        DispatchQueue.main.async{
+            if index == self.total-1{
+                SVProgressHUD.dismiss()
+            }
+            else{
+                print("index : \(index)")
+                print("progress :\(Float(index)/Float(self.total))")
+                SVProgressHUD.showProgress(Float(index)/Float(self.total), status: "Loading \(index)"+"/"+"\(self.total)")
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -97,15 +132,19 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
 
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        if kural == nil{
-            return 0
+        if self.kural != nil{
+            return 6
         }
-        return 6
+        return 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+       let isExpanded =  self.sectionExpandArray[section]
+        if isExpanded == true{
+                return 1
+        }
+        return 0
     }
 
 
@@ -113,14 +152,13 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
         if(indexPath.section == 0){
             return 90;
         }
-        else if(indexPath.section == 4){
+        else if(indexPath.section == 1){
             return 44
         }
-        else if(indexPath.section == 5){
+        else if(indexPath.section == 2){
             return 44
         }
         else{
-        // get the string size
             return UITableViewAutomaticDimension
         }
     }
@@ -138,29 +176,35 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
             return 0
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell : AuthorHeaderTableViewCell = tableView.dequeueReusableCell(withIdentifier: "sectionNameCell") as! AuthorHeaderTableViewCell
+        cell.headerCaption.isHidden = true
         if(section == 0){
-            return ""
+            cell.authorName.text = ""
         }
-        else if(section == 4){
-            return "அதிகாரம்"
+        else if(section == 1){
+            cell.authorName.text = "அதிகாரம்"
         }
-        else if(section == 5){
-            return "பால்"
+        else if(section == 2){
+            cell.authorName.text = "பால்"
         }
         else{
-            var textToBeDisplayed : String?
-            if(section == 1){
-                textToBeDisplayed = "மு.வ "
+            if(section == 3){
+                cell.headerCaption.isHidden = false
+                cell.authorName.text = "Meaning"
             }
-            else if(section == 2){
-                textToBeDisplayed = "சாலமன் பாப்பையா "
+            else if(section == 4){
+                cell.authorName.text = "மு.வ "
+                cell.authorImage.image = UIImage.init(named: "muva")
             }
-            else if(section == 3){
-                textToBeDisplayed = "English"
+            else if(section == 5){
+                cell.authorName.text = "சாலமன் பாப்பையா "
+                cell.authorImage.image = UIImage.init(named: "sapa")
             }
-            return textToBeDisplayed
         }
+        cell.setUpUI()
+        return cell.contentView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -171,32 +215,30 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
             cell.loadData()
             return cell
         }
-        else if(indexPath.section == 4){
-            let cell  = tableView.dequeueReusableCell(withIdentifier: "sectionNameCell", for: indexPath)
-            cell.textLabel?.text = kural?.hasChapter?.chapterName
-            cell.selectionStyle = .none
-            return cell
-        }
-        else if(indexPath.section == 5){
-            let cell  = tableView.dequeueReusableCell(withIdentifier: "sectionNameCell", for: indexPath)
-            cell.textLabel?.text = kural?.hasChapter?.hasSection?.sectionName
-            cell.selectionStyle = .none
-            return cell
-        }
         else{
             var textToBeDisplayed : String?
             if(indexPath.section == 1){
-                textToBeDisplayed = (kural?.kuralMeaningMuVa)!
+                if let hasChapter = kural?.hasChapter{
+                textToBeDisplayed = hasChapter.chapterName
+                }
             }
             else if(indexPath.section == 2){
-                textToBeDisplayed = (kural?.kuralMeaningSaPa)!
+                if let hasSection = kural?.hasChapter?.hasSection{
+                    textToBeDisplayed = hasSection.sectionName
+                }
             }
             else if(indexPath.section == 3){
                 textToBeDisplayed = (kural?.kuralMeaningEng)!
             }
-            let cell  = tableView.dequeueReusableCell(withIdentifier: "kuralDescriptionCell", for: indexPath)
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.text = textToBeDisplayed
+            else if(indexPath.section == 4){
+                textToBeDisplayed = (kural?.kuralMeaningMuVa)!
+            }
+            else if(indexPath.section == 5){
+                textToBeDisplayed = (kural?.kuralMeaningSaPa)!
+            }
+            let cell : KuralDescriptionTableViewCell  = tableView.dequeueReusableCell(withIdentifier: "kuralDescriptionCell", for: indexPath) as! KuralDescriptionTableViewCell
+            cell.descriptionLabel?.numberOfLines = 0
+            cell.descriptionLabel?.text = textToBeDisplayed
             cell.selectionStyle = .none
             return cell;
         }
@@ -204,13 +246,13 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isRandom{
-            if(indexPath.section == 4){
+            if(indexPath.section == 1){
                 let kuralsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "kurals") as! KuralsTableViewController
                 let chapter : Chapter = (kural?.hasChapter)!
                 kuralsVC.chapter = chapter
                 self.navigationController?.pushViewController(kuralsVC, animated: true)
             }
-            else if(indexPath.section == 5){
+            else if(indexPath.section == 2){
                 let chaptersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "chapters") as! ChaptersTableViewController
                 let section : Section = (kural?.hasChapter?.hasSection)!
                 chaptersVC.section = section

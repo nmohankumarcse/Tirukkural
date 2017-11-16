@@ -14,7 +14,7 @@ class ChaptersTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = section?.sectionName
-        chapters = CoreDataHelper().getAllChaptersForSection(section: section!)
+        chapters = CoreDataHelper.shared().getAllChaptersForSection(section: section!)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

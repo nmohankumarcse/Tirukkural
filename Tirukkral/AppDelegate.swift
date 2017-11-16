@@ -9,18 +9,138 @@
 import UIKit
 import CoreData
 import SVProgressHUD
+import UserNotifications
+import TwitterKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
-
+    var kuralsForThisMonth : [Kural] = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        Twitter.sharedInstance().start(withConsumerKey:"2vwOfQUhFeglqrkPMdQcAvYYK", consumerSecret:"F19UXOXbtLNB3ewoUNuFebmnGDksBlAOYWc8EAvf1NRLLNV7UO")
+
+        let sections = CoreDataHelper.shared().getAllSections()
+        if sections.count < 3{
+            SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
+            SVProgressHUD.show()
+            self.completeParsing() {isCompleted in
+                // your completion block code here.
+                if isCompleted{
+                    SVProgressHUD.dismiss(completion: nil)
+                    for _ in 1...31{
+                        let kural =  CoreDataHelper.shared().getRandomKuralForTheDay()
+                        self.kuralsForThisMonth.append(kural)
+                    }
+                    self.initializeRootView(kural: self.kuralsForThisMonth[0])
+                    self.askPermissionForLocalNotification()
+                }
+            }
+        }
+        else{
+            for _ in 1...31{
+                let kural =  CoreDataHelper.shared().getRandomKuralForTheDay()
+                self.kuralsForThisMonth.append(kural)
+            }
+            self.initializeRootView(kural: self.kuralsForThisMonth[0])
+            self.askPermissionForLocalNotification()
+        }
         return true
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return Twitter.sharedInstance().application(app, open: url, options: options)
+    }
+    
+    func initializeRootView(kural : Kural?){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabbar = (storyboard.instantiateViewController(withIdentifier: "tabbar") as! UITabBarController)
+        let nav : UINavigationController = tabbar.viewControllers![0] as! UINavigationController
+        let kuralDetail : KuralDetailTableViewController = nav.viewControllers[0] as! KuralDetailTableViewController
+        
+        if kural != nil{
+            kuralDetail.kural = kural
+            kuralDetail.isRandom = true
+            self.window?.rootViewController = tabbar
+        }
+    }
+    
+    func completeParsing(completion: @escaping (Bool) -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            print("url : \(urls[urls.count-1])")
+            if let path = Bundle.main.url(forResource: "tirukkural", withExtension: "json") {
+                
+                do {
+                    let jsonData = try Data(contentsOf: path, options: .mappedIfSafe)
+                    do {
+                        if let jsonResult = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary {
+                            let sections : NSArray = jsonResult.object(forKey: "sections") as! NSArray
+                            //                        let chapters : NSArray = jsonResult.object(forKey: "chapters") as! NSArray
+                            let kurals : NSArray = jsonResult.object(forKey: "kurals") as! NSArray
+                            let cdh = CoreDataHelper()
+                            for (_, section) in sections.enumerated() {
+                                cdh.insertSection(sectionName: section as! String)
+                            }
+                            
+                            for (index, kural) in kurals.enumerated() {
+                                cdh.insertKural(kural: kural as! NSDictionary, index: index)
+                                if index == kurals.count-1{
+                                    completion(true)
+                                }
+                            }
+                        }
+                    } catch let error as NSError {
+                        print("Error: \(error)")
+                    }
+                } catch let error as NSError {
+                    print("Error: \(error)")
+                }
+            }
+        })
+        // Call YOUR completion here...
+    }
+    
+    func askPermissionForLocalNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (granted, error) in
+            self.sheduleLocalNotification()
+        }
+    }
+
+    
+    func sheduleLocalNotification(){
+        let content = UNMutableNotificationContent()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        for (index,element) in self.kuralsForThisMonth.enumerated(){
+            let kural = element
+            content.title = (kural.hasChapter?.chapterName!)!
+            let kuralDescription : [String] = (kural.kural!.components(separatedBy: ","))
+            content.body  = "\(kuralDescription[0]) \n \(kuralDescription[1]) \n\n \(kural.kuralMeaningEng!)"
+            content.sound = UNNotificationSound.default()
+            let dict : Dictionary<String, Any> = ["kuralNo" : kural.kuralNo]
+            content.userInfo = dict
+            let calendar = Calendar(identifier: .gregorian)
+            let components = calendar.dateComponents(in: .current, from: Date.init())
+            let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day!+index, hour: components.hour, minute: components.minute)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: false)
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().add(request) {(error) in
+                if let error = error {
+                    print("Uh oh! We had an error: \(error)")
+                }
+            }
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print(response)
+        let dict = response.notification.request.content.userInfo
+        let kural = CoreDataHelper.shared().getKuralForNo(no: dict["kuralNo"] as! Int)
+        self.initializeRootView(kural: kural)
+    }
     
 
     func applicationWillResignActive(_ application: UIApplication) {

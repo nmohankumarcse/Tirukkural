@@ -9,7 +9,23 @@
 import UIKit
 import CoreData
 
+protocol DBInsertion {
+    func kuralInserted(index : Int)
+}
+
 class CoreDataHelper: NSObject {
+    var delegete : DBInsertion?
+    
+    open class func shared() -> CoreDataHelper {
+        
+        struct Static {
+            //Singleton instance.
+            static let shared = CoreDataHelper()
+        }
+        
+        /** @return Returns the default singleton instance. */
+        return Static.shared
+    }
     
     func insertSection(sectionName : String){
         let context : NSManagedObjectContext =  CoreDataManager.sharedInstance.managedObjectContext
@@ -53,7 +69,7 @@ class CoreDataHelper: NSObject {
         
     }
     
-    func insertKural(kural : NSDictionary){
+    func insertKural(kural : NSDictionary, index : Int){
         let context : NSManagedObjectContext =  CoreDataManager.sharedInstance.managedObjectContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Kural")
         request.predicate = NSPredicate(format: "kuralNo == %d", kural .object(forKey: "number") as! Int16)
@@ -72,6 +88,7 @@ class CoreDataHelper: NSObject {
                 
                 let chapter : Chapter = insertChapter(chapterName: kural .object(forKey: "chapter") as! String,sectionName: kural .object(forKey: "section") as! String)
                 kuralEntity.hasChapter = chapter
+                delegete?.kuralInserted(index: index)
                 do {
                     try context.save()
                 } catch let error as NSError {
@@ -208,6 +225,20 @@ class CoreDataHelper: NSObject {
         let randomNubmer : UInt32 = arc4random()%1330
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Kural")
         request.predicate = NSPredicate(format: "kuralNo == %d", randomNubmer)
+        do {
+            results = try CoreDataManager.sharedInstance.managedObjectContext.fetch(request) as! [Kural]
+        }
+        catch let error {
+            print("failed to fetch Section object: \(error)")
+        }
+        return results[0]
+    }
+    
+    func getKuralForNo(no : Int)->Kural{
+        
+        var results : [Kural] = []
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Kural")
+        request.predicate = NSPredicate(format: "kuralNo == %d", no)
         do {
             results = try CoreDataManager.sharedInstance.managedObjectContext.fetch(request) as! [Kural]
         }

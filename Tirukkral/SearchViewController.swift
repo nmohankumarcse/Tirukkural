@@ -25,12 +25,12 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        kurals = CoreDataHelper().getKuralForKeyword(keyword: searchText)
+        kurals = CoreDataHelper.shared().getKuralForKeyword(keyword: searchText)
         self.searchTableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        kurals = CoreDataHelper().getKuralForKeyword(keyword: searchBar.text!)
+        kurals = CoreDataHelper.shared().getKuralForKeyword(keyword: searchBar.text!)
         self.view.endEditing(true)
         self.searchTableView.reloadData()
     }
