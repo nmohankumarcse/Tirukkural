@@ -13,11 +13,9 @@ import CoreData
 class KuralTableViewCell: UITableViewCell {
 
     @IBOutlet weak var favouritesButton: UIButton!
-    @IBOutlet weak var favouriteBg: UIImageView!
     @IBOutlet weak var kuralNo: UILabel!
     @IBOutlet weak var line1: UILabel!
     @IBOutlet weak var line2: UILabel!
-    @IBOutlet weak var kuralNoBg: UIView!
     var kural : Kural?
     
     override func awakeFromNib() {
@@ -33,11 +31,9 @@ class KuralTableViewCell: UITableViewCell {
             self.kuralNo.text = "\(kural!.kuralNo)"
             self.line1.text = kuralDescription[0]
             self.line2.text = kuralDescription[1]
-            favouriteBg.image = UIImage.init(named: "Star")
             favouritesButton.isSelected = false
             if let isFav = self.kural?.isFavourite{
                 if isFav{
-                    favouriteBg.image = UIImage.init(named: "Star_Selected")
                     favouritesButton.isSelected = true
                 }
             }
@@ -45,14 +41,16 @@ class KuralTableViewCell: UITableViewCell {
         }
         self.selectionStyle = .none
     }
+    
+    override func layoutSubviews() {
+        self.line2.font = self.line1.font
+    }
 
     @IBAction func markAsFavourite(_ sender: UIButton) {
         if sender.isSelected{
-            favouriteBg.image = UIImage.init(named: "Star")
             self.kural?.isFavourite = false
         }
         else{
-            favouriteBg.image = UIImage.init(named: "Star_Selected")
             self.kural?.isFavourite = true
         }
         sender.isSelected = !sender.isSelected
