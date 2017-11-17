@@ -14,6 +14,7 @@ class FavourtiesKuralViewController: UIViewController,UITableViewDelegate,UITabl
     @IBOutlet weak var favourtiesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.favourtiesTableView.register(UINib.init(nibName: "KuralTableViewCell", bundle: nil), forCellReuseIdentifier: "KuralTableViewCell")
         self.navigationItem.title = "பிடித்தது"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -45,7 +46,7 @@ class FavourtiesKuralViewController: UIViewController,UITableViewDelegate,UITabl
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let kural : Kural = kurals[indexPath.row]
-        let cell : KuralTableViewCell = favourtiesTableView.dequeueReusableCell(withIdentifier: "kuralCell", for: indexPath) as! KuralTableViewCell
+        let cell : KuralTableViewCell = favourtiesTableView.dequeueReusableCell(withIdentifier: "KuralTableViewCell", for: indexPath) as! KuralTableViewCell
         cell.kural = kural
         cell.loadData()
         return cell

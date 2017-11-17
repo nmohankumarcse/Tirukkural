@@ -18,6 +18,7 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
     var total = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UINib.init(nibName: "KuralTableViewCell", bundle: nil), forCellReuseIdentifier: "KuralTableViewCell")
         if !isRandom{
             self.navigationItem.title =  "விளக்கம்"
         }
@@ -55,8 +56,8 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
         let chapterName : String = (kural?.hasChapter?.chapterName)!
         let composer = TWTRComposerViewController(initialText: "\(kuralDescription[0]) \n \(kuralDescription[1]) #\(chapterName) #tirukkural #திருக்குறள்", image: UIImage.init(named: "thiruvalluvar"), videoURL: nil)
         composer.becomeFirstResponder()
-
-        present(composer, animated: true, completion: nil)
+        self.present(composer, animated: true, completion: {
+        })
     }
     
     
@@ -146,8 +147,30 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
         }
         return 0
     }
-
-
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        for cell in tableView.visibleCells {
+            let hiddenFrameHeight = scrollView.contentOffset.y + navigationController!.navigationBar.frame.size.height - cell.frame.origin.y
+            if cell.frame.origin.y > 0{
+                if (hiddenFrameHeight >= 0 || hiddenFrameHeight <= cell.frame.size.height) {
+                    maskCell(cell: cell, margin: Float(hiddenFrameHeight))
+                }
+            }
+        }
+    }
+    
+    func maskCell(cell: UITableViewCell, margin: Float) {
+        cell.layer.mask = visibilityMaskForCell(cell: cell, location: (margin / Float(cell.frame.size.height) ))
+        cell.layer.masksToBounds = true
+    }
+    
+    func visibilityMaskForCell(cell: UITableViewCell, location: Float) -> CAGradientLayer {
+        let mask = CAGradientLayer()
+        mask.frame = cell.bounds
+        mask.colors = [UIColor(white: 1, alpha: 0).cgColor, UIColor(white: 1, alpha: 1).cgColor]
+        mask.locations = [NSNumber(value: location), NSNumber(value: location)]
+        return mask;
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.section == 0){
             return 90;
@@ -209,7 +232,7 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.section == 0){
-            let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "kuralCell", for: indexPath) as! KuralTableViewCell
+            let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "KuralTableViewCell", for: indexPath) as! KuralTableViewCell
             cell.kural = self.kural
             cell.selectionStyle = .none
             cell.loadData()

@@ -9,6 +9,8 @@
 import UIKit
 import TwitterKit
 
+
+
 class TwitterTimelineTableViewController: TWTRTimelineViewController,UITextFieldDelegate {
     @IBOutlet weak var seachText: UITextField!
     
@@ -20,6 +22,15 @@ class TwitterTimelineTableViewController: TWTRTimelineViewController,UITextField
         }
         return true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let image = UIImage.init(named: "background")?.cgImage
+//        self.navigationController?.view.backgroundColor = UIColor.init(patternImage: image!)
+        self.navigationController?.view.layer.contents = image
+        self.tableView.backgroundColor = UIColor.clear
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.seachText.text = "#tirukkural"
@@ -30,6 +41,8 @@ class TwitterTimelineTableViewController: TWTRTimelineViewController,UITextField
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    
 
     func searchTwitter(tag : String){
         Twitter.sharedInstance().sessionStore.fetchGuestSession { (guestSession, error) in
@@ -49,6 +62,15 @@ class TwitterTimelineTableViewController: TWTRTimelineViewController,UITextField
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? TWTRTweetTableViewCell {
+            cell.backgroundColor = .clear
+            cell.tweetView.backgroundColor = .clear
+            cell.tweetView.linkTextColor = .black
+            cell.tweetView.primaryTextColor = .black
+        }
+    }
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {
 //        // #warning Incomplete implementation, return the number of sections

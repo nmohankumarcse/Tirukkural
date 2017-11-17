@@ -12,6 +12,8 @@ protocol ChapterSelectionCollectionViewDelegate {
 }
 
 class ChaptersCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var chapterButton: UIButton!
     var index = 0
     var delegate : ChapterSelectionCollectionViewDelegate?
@@ -19,6 +21,7 @@ class ChaptersCollectionViewCell: UICollectionViewCell {
     @IBAction func chatperSelected(_ sender: Any) {
         let button = sender as! UIButton
         button.isSelected = true
+        self.bottomBar.backgroundColor = UIColor.black
         delegate?.chapterSelectedAtIndex(index: self.index)
     }
 }

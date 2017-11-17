@@ -13,6 +13,10 @@ class KuralsTableViewController: UITableViewController {
     var kurals : [Kural] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UINib.init(nibName: "KuralTableViewCell", bundle: nil), forCellReuseIdentifier: "KuralTableViewCell")
+        let image = UIImage.init(named: "background")?.cgImage
+        //        self.navigationController?.view.backgroundColor = UIColor.init(patternImage: image!)
+        self.navigationController?.view.layer.contents = image
         self.navigationItem.title = chapter?.chapterName
         kurals = CoreDataHelper.shared().getAllKuralsForChapter(chapter: chapter!)
         // Uncomment the following line to preserve selection between presentations
@@ -40,7 +44,7 @@ class KuralsTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let kural : Kural = kurals[indexPath.row]
-        let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "kuralCell", for: indexPath) as! KuralTableViewCell
+        let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "KuralTableViewCell", for: indexPath) as! KuralTableViewCell
         cell.kural = kural
         cell.loadData()
         return cell

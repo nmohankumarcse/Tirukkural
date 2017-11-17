@@ -14,6 +14,7 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
     var kurals : [Kural] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.searchTableView.register(UINib.init(nibName: "KuralTableViewCell", bundle: nil), forCellReuseIdentifier: "KuralTableViewCell")
         self.searchBar.showsCancelButton = true
         self.searchBar.becomeFirstResponder()
         // Do any additional setup after loading the view.
@@ -54,7 +55,7 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let kural : Kural = kurals[indexPath.row]
-        let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "kuralCell", for: indexPath) as! KuralTableViewCell
+        let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "KuralTableViewCell", for: indexPath) as! KuralTableViewCell
         cell.kural = kural
         cell.loadData()
         return cell

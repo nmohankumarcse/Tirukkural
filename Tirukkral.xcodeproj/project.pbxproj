@@ -34,6 +34,7 @@
 		529F98DC1FBBEC030026902C /* AuthorHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529F98DB1FBBEC030026902C /* AuthorHeaderTableViewCell.swift */; };
 		52E018471FBC35550026324D /* SearchChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E018461FBC35550026324D /* SearchChapterViewController.swift */; };
 		52E0184A1FBC4F0A0026324D /* ChaptersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E018491FBC4F0A0026324D /* ChaptersCollectionViewCell.swift */; };
+		52F15AFD1FBE034100B11DBB /* KuralTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F15AFB1FBE034100B11DBB /* KuralTableViewCell.xib */; };
 		52FA98D61FBD9D610072AEC1 /* TwitterTimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA98D51FBD9D610072AEC1 /* TwitterTimelineTableViewController.swift */; };
 		938EC692B9ECE1FD453D5025 /* Pods_TirukkralTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29225347C87CE1DDDAEBF965 /* Pods_TirukkralTests.framework */; };
 		BBB9C80F29795C589930C248 /* Pods_Tirukkral.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E6745AE70A4E0091908CC7 /* Pods_Tirukkral.framework */; };
@@ -76,7 +77,7 @@
 		007323401EA4D8460011370E /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Tirukkral/CoreData/CoreDataManager.swift; sourceTree = "<group>"; };
 		0075CF541EA619C30035C1E4 /* ChaptersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaptersTableViewController.swift; sourceTree = "<group>"; };
 		0075CF561EA61FFA0035C1E4 /* KuralsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralsTableViewController.swift; sourceTree = "<group>"; };
-		0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralTableViewCell.swift; sourceTree = "<group>"; };
+		0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KuralTableViewCell.swift; path = ../../KuralTableViewCell.swift; sourceTree = "<group>"; };
 		0075CF5C1EA635320035C1E4 /* KuralDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralDetailTableViewController.swift; sourceTree = "<group>"; };
 		0075CF5E1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KuralDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		007D22261EA74158003F78C1 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		529F98DB1FBBEC030026902C /* AuthorHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		52E018461FBC35550026324D /* SearchChapterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChapterViewController.swift; sourceTree = "<group>"; };
 		52E018491FBC4F0A0026324D /* ChaptersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaptersCollectionViewCell.swift; sourceTree = "<group>"; };
+		52F15AFB1FBE034100B11DBB /* KuralTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KuralTableViewCell.xib; sourceTree = "<group>"; };
 		52FA98D51FBD9D610072AEC1 /* TwitterTimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineTableViewController.swift; sourceTree = "<group>"; };
 		5B8FC974996CF0546E0DBCB1 /* Pods-TirukkralUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TirukkralUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TirukkralUITests/Pods-TirukkralUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5D8E8D1C0C7577EBCF5B92E6 /* Pods-Tirukkral.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tirukkral.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tirukkral/Pods-Tirukkral.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		0007C29E1E9D047D00E9D3BA /* Tirukkral */ = {
 			isa = PBXGroup;
 			children = (
+				52F15AF81FBE030C00B11DBB /* View */,
 				00860E531EA4C5C00078C063 /* CoreData */,
 				0007C2D01E9D04B600E9D3BA /* tirukkural.json */,
 				0007C29F1E9D047D00E9D3BA /* AppDelegate.swift */,
@@ -169,7 +172,6 @@
 				52FA98D51FBD9D610072AEC1 /* TwitterTimelineTableViewController.swift */,
 				52E018491FBC4F0A0026324D /* ChaptersCollectionViewCell.swift */,
 				5230837B1FBB2A11009AFC8C /* FavourtiesKuralViewController.swift */,
-				0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */,
 				529F98DB1FBBEC030026902C /* AuthorHeaderTableViewCell.swift */,
 				0075CF5E1EA642EB0035C1E4 /* KuralDescriptionTableViewCell.swift */,
 				0007C2A91E9D047D00E9D3BA /* Assets.xcassets */,
@@ -225,6 +227,23 @@
 				5B8FC974996CF0546E0DBCB1 /* Pods-TirukkralUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		52F15AF81FBE030C00B11DBB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52F15AF91FBE031800B11DBB /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52F15AF91FBE031800B11DBB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0075CF581EA6233A0035C1E4 /* KuralTableViewCell.swift */,
+				52F15AFB1FBE034100B11DBB /* KuralTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		ED1CC663829BD7A93B2AE396 /* Frameworks */ = {
@@ -356,6 +375,7 @@
 			files = (
 				0007C2AD1E9D047D00E9D3BA /* LaunchScreen.storyboard in Resources */,
 				0007C2D11E9D04B600E9D3BA /* tirukkural.json in Resources */,
+				52F15AFD1FBE034100B11DBB /* KuralTableViewCell.xib in Resources */,
 				0007C2AA1E9D047D00E9D3BA /* Assets.xcassets in Resources */,
 				0007C2A51E9D047D00E9D3BA /* Main.storyboard in Resources */,
 			);

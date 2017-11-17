@@ -25,6 +25,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tirukkuralTableView.register(UINib.init(nibName: "KuralTableViewCell", bundle: nil), forCellReuseIdentifier: "KuralTableViewCell")
         sections = CoreDataHelper.shared().getAllSections()
         if sections.count > 0{
             chapters = CoreDataHelper.shared().getAllChaptersForSection(section: sections[0])
@@ -54,6 +55,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView == tirukkuralTableView{
+//            self.chatperSelected(chatper: self.selectedChapter!)
+        }
+    }
     @IBAction func selectChatper(_ sender: Any) {
         chapters = CoreDataHelper.shared().getAllChaptersForSection(section: sections[segmentControl.selectedSegmentIndex])
         self.chatperSelected(chatper: chapters[0])
@@ -106,19 +112,29 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.index  = indexPath.item
         let chapter = self.chapters[indexPath.item]
         cell.chapterButton.setTitle(chapter.chapterName, for: .normal)
+        cell.bottomBar.backgroundColor = UIColor.darkGray
         cell.chapterButton.isSelected = false
+        cell.bottomBar.backgroundColor = UIColor.init(red: 200/255.0, green: 120/255.0, blue: 70/255.0, alpha: 1)
         if chapter.chapterName == self.selectedChapter?.chapterName{
             cell.chapterButton.isSelected = true
+            cell.bottomBar.backgroundColor = UIColor.black
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let kural : Kural = kurals[indexPath.row]
-        let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "kuralCell", for: indexPath) as! KuralTableViewCell
+        let cell : KuralTableViewCell = tableView.dequeueReusableCell(withIdentifier: "KuralTableViewCell", for: indexPath) as! KuralTableViewCell
         cell.kural = kural
         cell.loadData()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0{
+            return 0
+        }
+        return 44
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
