@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     var window: UIWindow?
     var kuralsForThisMonth : [Kural] = []
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Twitter.sharedInstance().start(withConsumerKey:"2vwOfQUhFeglqrkPMdQcAvYYK", consumerSecret:"F19UXOXbtLNB3ewoUNuFebmnGDksBlAOYWc8EAvf1NRLLNV7UO")
+        TWTRTwitter.sharedInstance().start(withConsumerKey:"2vwOfQUhFeglqrkPMdQcAvYYK", consumerSecret:"F19UXOXbtLNB3ewoUNuFebmnGDksBlAOYWc8EAvf1NRLLNV7UO")
 
         let sections = CoreDataHelper.shared().getAllSections()
         if sections.count < 3{
@@ -50,8 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return Twitter.sharedInstance().application(app, open: url, options: options)
+    internal func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
     }
     
     func initializeRootView(kural : Kural?){
@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             content.title = (kural.hasChapter?.chapterName!)!
             let kuralDescription : [String] = (kural.kural!.components(separatedBy: ","))
             content.body  = "\(kuralDescription[0]) \n \(kuralDescription[1]) \n\n \(kural.kuralMeaningEng!)"
-            content.sound = UNNotificationSound.default()
+            content.sound = UNNotificationSound.default
             let dict : Dictionary<String, Any> = ["kuralNo" : kural.kuralNo]
             content.userInfo = dict
             let calendar = Calendar(identifier: .gregorian)

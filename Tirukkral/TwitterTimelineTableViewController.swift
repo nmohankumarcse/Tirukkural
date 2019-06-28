@@ -45,7 +45,7 @@ class TwitterTimelineTableViewController: TWTRTimelineViewController,UITextField
     
 
     func searchTwitter(tag : String){
-        Twitter.sharedInstance().sessionStore.fetchGuestSession { (guestSession, error) in
+        TWTRTwitter.sharedInstance().sessionStore.fetchGuestSession { (guestSession, error) in
             if (guestSession != nil) {
                 // make API calls that do not require user auth
                 let client = TWTRAPIClient()

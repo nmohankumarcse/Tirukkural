@@ -26,7 +26,7 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
             animateTableView()
         }
         self.tableView.estimatedRowHeight = 80;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.rowHeight = UITableView.automaticDimension;
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -35,12 +35,12 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     @IBAction func composeTweet(_ sender: Any) {
-        if (Twitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
+        if (TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
             // App must have at least one logged-in user to compose a Tweet
             self.showTweetCompose()
         } else {
             // Log in, and then check again
-            Twitter.sharedInstance().logIn { session, error in
+            TWTRTwitter.sharedInstance().logIn { session, error in
                 if session != nil { // Log in succeeded
                     self.showTweetCompose()
                 } else {
@@ -182,7 +182,7 @@ class KuralDetailTableViewController: UIViewController,UITableViewDelegate,UITab
             return 44
         }
         else{
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
     

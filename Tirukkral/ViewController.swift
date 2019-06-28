@@ -102,7 +102,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let chapter = self.chapters[indexPath.item]
-        let size: CGSize = chapter.chapterName!.size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 18.0)])
+        let size: CGSize = chapter.chapterName!.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0)])
         return CGSize(width: size.width + 35, height: self.chaptersCollectionView.frame.size.height)
     }
     
